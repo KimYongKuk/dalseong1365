@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>달성군자원봉사 - 비대면 봉사활동</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: white;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #ff6b8a 0%, #ff8da1 100%);
+            padding: 60px 0;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-logo {
+            margin-bottom: 30px;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+        }
+
+        .hero-text {
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #ff6b8a;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            align-items: start;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #ff6b8a 0%, #ff8da1 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 107, 138, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            color: white;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 107, 138, 0.4);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .participants {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+        }
+
+        .join-btn {
+            background: white;
+            color: #ff6b8a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .join-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+        }
+
+        .new-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            .hero-logo img {
+                max-width: 400px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h2 {
+                font-size: 2rem;
+            }
+            
+            .card-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .hero-section {
+                padding: 40px 0;
+            }
+            
+            .hero-logo img {
+                max-width: 300px;
+            }
+            
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .card-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 히어로 섹션 -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSIzMDAiIHk9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjQ4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmNmI4YSI+66eM7ISxIOqwgOyalOuvhOyCsOuUsOuJqOyEsO2EsDwvdGV4dD4KPHR1eHQgeD0iMzAwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIzNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiM2NjYiPuu5hOuMgOuplCDro7TsgqztmJzrj5k8L3RleHQ+Cjx0ZXh0IHg9IjMwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM4ODgiPuuNlOuVpOuVnCDrjIHtlZzrr7nsh60t+ydhIO2VqOq7mO2VmOyalOuLiOuLpDwvdGV4dD4KPHR1eHQgeD0iMzAwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzg4OCI+7JWI7J2E64uI64uk7JKwIDEzNjU8L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iMzMwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwIiByeD0iMjAiIGZpbGw9IiNmZjZiOGEiLz4KPHR1eHQgeD0iMzAwIiB5PSIzNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIj7qsJHsp5XsoJXsopztmJzrj5kgPSDtmJjrj5k8L3RleHQ+Cjwvc3ZnPgo=" alt="달성군 자원봉사센터 로고">
+            </div>
+            <div class="hero-text">
+                <div class="hero-badge">🌟 따뜻한 마음을 나누는 공간</div>
+                <h1 class="hero-title">비대면 봉사활동</h1>
+                <p class="hero-subtitle">
+                    집에서도 참여할 수 있는 의미있는 봉사활동으로<br>
+                    지역사회에 따뜻한 변화를 만들어보세요
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h2>참여 가능한 봉사활동</h2>
+            <p>원하는 활동을 선택하여 지금 바로 참여해보세요</p>
+        </div>
+
+        <div class="cards-container">
+            <!-- 카드 1 - 온라인 교육 봉사 -->
+            <div class="card" onclick="redirectToActivity('online-education')">
+                <div class="new-badge">NEW</div>
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="온라인 교육 봉사" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">온라인 교육 봉사</h3>
+                    <p class="card-description">
+                        집에서 편리하게 참여할 수 있는 온라인 교육 봉사활동입니다. 
+                        어르신들을 위한 디지털 교육, 아동 학습 지원 등 다양한 교육 봉사에 참여하세요.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">교육</span>
+                        <span class="tag">온라인</span>
+                        <span class="tag">디지털</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="participants">참여자 324명</span>
+                        <button class="join-btn">참여하기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 2 - 디지털 콘텐츠 제작 -->
+            <div class="card" onclick="redirectToActivity('digital-content')">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="디지털 콘텐츠 제작" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">디지털 콘텐츠 제작</h3>
+                    <p class="card-description">
+                        홍보 영상, 포스터, 웹사이트 등 디지털 콘텐츠를 제작하여 
+                        지역사회 발전에 기여하는 창의적인 봉사활동입니다.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">창작</span>
+                        <span class="tag">디자인</span>
+                        <span class="tag">영상</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="participants">참여자 156명</span>
+                        <button class="join-btn">참여하기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 3 - 온라인 상담 봉사 -->
+            <div class="card" onclick="redirectToActivity('online-counseling')">
+                <div class="new-badge">NEW</div>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="온라인 상담 봉사" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">온라인 상담 봉사</h3>
+                    <p class="card-description">
+                        화상통화나 채팅을 통해 심리적 지원이 필요한 분들께 
+                        따뜻한 마음을 전하는 온라인 상담 봉사활동입니다.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">상담</span>
+                        <span class="tag">소통</span>
+                        <span class="tag">심리지원</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="participants">참여자 89명</span>
+                        <button class="join-btn">참여하기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 4 - 데이터 입력 봉사 -->
+            <div class="card" onclick="redirectToActivity('data-entry')">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="데이터 입력 봉사" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">데이터 입력 봉사</h3>
+                    <p class="card-description">
+                        비영리 단체의 데이터 정리, 문서 작성, 자료 관리 등 
+                        간단하지만 의미있는 사무 지원 봉사활동입니다.
+                    </p>
+                    <div class="card-tags">
+                        <span class="tag">사무지원</span>
+                        <span class="tag">데이터</span>
+                        <span class="tag">문서작성</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="participants">참여자 267명</span>
+                        <button class="join-btn">참여하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function redirectToActivity(activityType) {
+            // 현재는 네이버로 리다이렉션 (추후 실제 페이지로 변경 예정)
+            window.open('https://www.naver.com', '_blank');
+        }
+
+        // 카드 호버 효과를 위한 추가 인터랙션
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
